@@ -35,6 +35,7 @@
 	let isOpenned = false;
 
 	let idGame = null;
+	let maxRound = 10;
 
 	//round Announcement
 	let displayAnnouncement = false;
@@ -215,6 +216,8 @@
 
 	$: saveData(players, rounds, status, selectedRound);
 
+	$: totalRound = calculeMaxRound(players.length, maxRound);
+
 	function saveData(players, rounds, status, selectedRound) {
 		if (status == 'INIT') return;
 
@@ -224,7 +227,7 @@
 			return;
 		}
 
-		totalRound = calculeMaxRound(players.length);
+		totalRound = calculeMaxRound(players.length, maxRound);
 		positionNewUser = players.length - 1;
 
 		localStorage.setItem('players', JSON.stringify(players));
@@ -244,7 +247,7 @@
 				addNewRound();
 			}
 
-			totalRound = calculeMaxRound(players.length);
+			totalRound = calculeMaxRound(players.length, maxRound);
 
 			status = 'PLAY';
 		} catch (e) {
@@ -436,7 +439,7 @@
 					{/if}
 				</button>
 				{#if isOpenned}
-					<ActionMenu bind:isOpenned bind:status bind:bidsDisplay />
+					<ActionMenu bind:isOpenned bind:status bind:bidsDisplay bind:maxRound />
 				{/if}
 			</div>
 		</div>
@@ -878,6 +881,7 @@
 		backdrop-filter: blur(10px);
 		background-color: rgba(255, 255, 255, 0.1);
 		border-top: 1px solid var(--primary-300);
+		bottom: 0%;
 	}
 
 	.navigation-buttons {

@@ -5,6 +5,7 @@
 	export let isOpenned;
 	export let status;
 	export let bidsDisplay = true;
+	export let maxRound = 10;
 
 	let validEndGame = false;
 
@@ -45,6 +46,20 @@
 			on:click={() => {
 				bidsDisplay = true;
 			}}>bids shown</button
+		>
+	{/if}
+
+	{#if maxRound == 10}
+		<button
+			on:click={() => {
+				maxRound = 40;
+			}}>Max 10 rounds</button
+		>
+	{:else}
+		<button
+			on:click={() => {
+				maxRound = 10;
+			}}>Infinite rounds</button
 		>
 	{/if}
 

@@ -109,6 +109,9 @@
 					{#if player == 'Nadir' && index == scores.length - 1}
 						💩
 					{/if}
+					{#if player == 'Cynthia'}
+						🐸
+					{/if}
 				</p>
 				<p class:negative={score < 0}>{score} pts</p>
 			</div>
